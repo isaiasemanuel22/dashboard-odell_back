@@ -5,10 +5,11 @@ export class ProductInfo {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({default:''})
   description: string;
 
-  @Column("simple-array")
+  @Column({ type: "json", nullable: true })
   colorsAvailability: string[];
+  
 
 }

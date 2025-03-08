@@ -1,71 +1,50 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { Product } from "../../commons/models/Product.entity";
-import { FixedExpenseService } from "src/fixedExpense/services/fixedExpense.service";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Product } from 'src/commons/models/Product.entity';
+import { Repository } from 'typeorm';
+import { ProductsInfoOrmService } from './products-info.orm/products-info.orm.service'; // Importar el servicio existente
+import { BillService } from 'src/bills/service/bills.service';
 
 @Injectable()
-export class ProductsService {
+export class ProductsOrmService {
   constructor(
     @InjectRepository(Product)
-    private readonly productRepository: Repository<Product>,
-    private readonly serviceFixedExpense: FixedExpenseService
+    private readonly productsRepository: Repository<Product>,
+    private readonly productInfoService: ProductsInfoOrmService ,// Inyectar el servicio existente
+    private readonly  billService:BillService
+  ) {}
 
-  ) { }
+  async create(product: Product): Promise<Product> {
+    // Crear ProductInfo si existe en los datos del producto
+    const productInfo = product.productInfo ? await this.productInfoService.create(product.productInfo) : null;
+    const billProduct = product.bill ? await this.billService.create(product.bill): null;
 
-  create(product: Product): Promise<Product> {
-    const newProduct = this.productRepository.create(product);
-    return this.productRepository.save(newProduct);
+    // Crear el producto con el ProductInfo asociado
+    const newProduct = this.productsRepository.create({
+      ...product,
+      productInfo: productInfo,
+      bill:billProduct
+    });
+
+    return this.productsRepository.save(newProduct);
   }
 
-  findAll(): Promise<Product[]> {
-    return this.productRepository.find({ relations: ['bills', 'bills.material'] });
+  async findAll(): Promise<Product[]> {
+    return this.productsRepository.find();
   }
 
-  findOne(id: string): Promise<Product> {
-    return this.productRepository.findOne({ where: { id }, relations: ['bills', 'bills.material'] });
+
+  async findAllSuplement(): Promise<Product[]> {
+    return await this.productsRepository.createQueryBuilder('product')
+    .where('CAST(product.supplement AS UNSIGNED) = 1')
+    .getMany();
   }
 
-  async update(id: string, product: Product): Promise<Product> {
-    await this.productRepository.update(id, product);
-    return this.productRepository.findOne({ where: { id }, relations: ['bills', 'bills.material'] });
+  async findOne(id: string): Promise<Product> {
+    return this.productsRepository.findOneBy({ id });
   }
 
   async remove(id: string): Promise<void> {
-    await this.productRepository.delete(id);
-  }
-
-  async calculateSellingPrice(productId: string): Promise<{
-    gastos_de_luz: number;
-    gastos_de_filamento: number;
-    desgaste_de_la_impresora: number;
-    margen_error: number;
-    total: number;
-  }> {
-    const product = await this.productRepository.findOne({ where: { id: productId }, relations: ['bills', 'bills.material'] });
-    const fixedExpense = (await this.serviceFixedExpense.findAll()).find((fixed, index) => {
-      if (index === 0) {
-        return fixed;
-      }
-    });
-
-    if (!product) {
-      throw new NotFoundException(`Product with id ${productId} not found`);
-    }
-
-    const gastos_de_luz = ((fixedExpense.priceKwh * fixedExpense.consumeRealHour) / 1000) * product.bill.hours;
-    const gastos_de_filamento = (product.bill.material.price * product.bill.grams) / 1000;
-    const desgaste_de_la_impresora = (fixedExpense.machineWear / fixedExpense.spareParts) * product.bill.hours;
-    const margen_error = fixedExpense.marginOfError * (gastos_de_luz + gastos_de_filamento + desgaste_de_la_impresora);
-
-    const total = gastos_de_luz + gastos_de_filamento + desgaste_de_la_impresora + margen_error;
-
-    return {
-      gastos_de_luz,
-      gastos_de_filamento,
-      desgaste_de_la_impresora,
-      margen_error,
-      total
-    };
+    await this.productsRepository.delete(id);
   }
 }

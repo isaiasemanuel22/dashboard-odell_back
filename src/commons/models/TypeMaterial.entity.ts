@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany } from "typeorm";
 import { Bill } from "./Bill.entity";
-import { Color } from "./Color.entity";
+import { Filament } from "./Filament.entity";
 
 @Entity()
 export class TypeMaterial {
@@ -10,15 +10,13 @@ export class TypeMaterial {
   @Column()
   name: string;
 
-  @Column()
+  @Column({default:0})
   price: number;
-
-  @Column()
-  kgMaterial: number;
 
   @ManyToMany(() => Bill, (bill) => bill.material)
   bills: Bill[];
 
-  @ManyToMany(() => Color)
-  colors: Color[];
+  @OneToMany(() => Filament, (filament) => filament.typeMaterial)
+  filament: Filament[];
+
 }

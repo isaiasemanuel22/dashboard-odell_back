@@ -4,13 +4,13 @@ module.exports = {
     port: 3306,
     username: 'root',
     password: '',
-    database: 'Odell',
-    entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    database: 'odell',
+    entities: [__dirname + '/src/**/*.entity{.ts,.js}'],
     synchronize: false,
-    logging: true, // Habilita los logs
+    logging: false,
     autoLoadEntities: true,
-    migrations: [__dirname + '/migrations/*.ts'],
+    migrations: [__dirname + '/src/migrations/*.ts'],
     cli: {
-      migrationsDir: 'src/migrations', // Directorio para crear las migraciones
+      migrationsDir: 'src/migrations',
     },
-  };
+};
