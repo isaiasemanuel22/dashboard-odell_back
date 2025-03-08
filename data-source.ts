@@ -1,9 +1,9 @@
-import { Bill } from 'src/commons/models/Bill.entity';
-import { Color } from 'src/commons/models/Color.entity';
-import { Product } from 'src/commons/models/Product.entity';
-import { ProductInfo } from 'src/commons/models/ProductsInfo.entity';
-import { TypeMaterial } from 'src/commons/models/TypeMaterial.entity';
-import { FixedExpense } from 'src/fixedExpense/models/fixedExpense.entity';
+import { Bill } from './src/commons/models/Bill.entity';
+import { Color } from './src/commons/models/Color.entity';
+import { Product } from './src/commons/models/Product.entity';
+import { ProductInfo } from './src/commons/models/ProductsInfo.entity';
+import { TypeMaterial } from './src/commons/models/TypeMaterial.entity';
+import { FixedExpense } from './src/fixedExpense/models/fixedExpense.entity';
 import { DataSource } from 'typeorm';
 
 export const AppDataSource = new DataSource({
