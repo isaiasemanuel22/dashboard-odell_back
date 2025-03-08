@@ -5,7 +5,6 @@ module.exports = {
     username: 'root',
     password: '',
     database: 'odell',
-    entities: [__dirname + '/src/**/*.entity{.ts,.js}'],
     synchronize: false,
     logging: false,
     autoLoadEntities: true,
