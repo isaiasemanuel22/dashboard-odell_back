@@ -1,7 +1,6 @@
 import { Bucket } from '@google-cloud/storage';
 import { Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class FirebaseService {
@@ -18,7 +17,7 @@ export class FirebaseService {
 
     this.bucket = admin.storage().bucket();
   }
-
+/*
   async uploadImage(file: Express.Multer.File): Promise<string> {
     const fileName = `${uuidv4()}-${file.originalname}`;
     const fileUpload = this.bucket.file(fileName);
@@ -60,5 +59,5 @@ export class FirebaseService {
       console.error('Error deleting image from Firebase:', error);
       throw error;
     }
-  }
+  }*/
 }
