@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from 'src/commons/models/Product.entity';
+import { Product } from '../../commons/models/Product.entity';
 import { Repository } from 'typeorm';
 import { ProductsInfoOrmService } from './products-info.orm/products-info.orm.service'; // Importar el servicio existente
-import { BillService } from 'src/bills/service/bills.service';
+import { BillService } from '../../bills/service/bills.service';
 
 @Injectable()
 export class ProductsOrmService {

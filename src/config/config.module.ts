@@ -3,7 +3,7 @@ import { ConfigController } from './controller/config.controller';
 import { ConfigService } from './service/config.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Config } from './models/config.entity';
-import { FilamentModule } from 'src/filament/filament.module';
+import { FilamentModule } from '../filament/filament.module';
 
 
 @Module({

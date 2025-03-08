@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { TypeMaterial } from 'src/commons/models/TypeMaterial.entity';
-import { TypeMaterialService } from 'src/filament/service/type-material/type-material.service';
+import { TypeMaterial } from '../../../commons/models/TypeMaterial.entity';
+import { TypeMaterialService } from '../../../filament/service/type-material/type-material.service';
 
 
 @Controller('type-material')

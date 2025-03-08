@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TypeMaterial } from 'src/commons/models/TypeMaterial.entity';
+import { TypeMaterial } from '../../../commons/models/TypeMaterial.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()

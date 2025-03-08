@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { BrandFilament } from 'src/commons/models/BrandFilament.entity';
-import { BrandFilamentService } from 'src/filament/service/brand-filament/brand-filament.service';
+import { BrandFilament } from '../../../commons/models/BrandFilament.entity';
+import { BrandFilamentService } from '../../../filament/service/brand-filament/brand-filament.service';
 
 @Controller('brand-filament')
 export class BrandFilamentController {

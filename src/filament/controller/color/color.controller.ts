@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { Color } from 'src/commons/models/Color.entity';
-import { ColorService } from 'src/filament/service/color/color.service';
+import { Color } from '../../../commons/models/Color.entity';
+import { ColorService } from '../../../filament/service/color/color.service';
 
 
 @Controller('color')
