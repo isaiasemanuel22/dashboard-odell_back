@@ -6,11 +6,13 @@ import { FixedExpenseModule } from './fixedExpense/fixedExpense.module';;
 import { BillModule } from './bills/bill.module';
 import { ConfigGeneralModule } from './config/config.module';
 import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
 @Module({
   imports: [
     ProductsModule,
     FixedExpenseModule,
     BillModule,
+    AppController,
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: (process.env.DB_TYPE ?? 'mysql') as 'mysql',
