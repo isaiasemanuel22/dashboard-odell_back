@@ -22,7 +22,7 @@ import { AppService } from './app.service';
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD || '',
         database: process.env.DB_NAME,
-        entities: [__dirname + '/dist/**/*.entity{.ts,.js}'],
+        entities: [__dirname + '/src/**/*.entity{.ts,.js}'],
         synchronize: false,
         logging: false,
       }),
