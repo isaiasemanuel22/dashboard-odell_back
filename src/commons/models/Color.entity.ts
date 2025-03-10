@@ -7,7 +7,4 @@ export class Color {
 
   @Column()
   name: string;
-
-  @Column()
-  rgb:string;
 }

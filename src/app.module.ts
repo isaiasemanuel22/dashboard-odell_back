@@ -15,14 +15,14 @@ import { FixedExpenseModule } from './fixedExpense/fixedExpense.module';
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: (process.env.DB_TYPE ?? 'mysql') as 'mysql',
-        host: '127.0.0.1',
-        port: 3306,
-        username: 'root',
-        password: '',
-        database: 'odell',
-      //  url:process.env.JAWSDB_URL,
+        host: process.env.DB_HOST,
+        port: (process.env.DB_TYPE ?? 3306) as number,
+        username:process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        url:process.env.JAWSDB_URL,
         entities: [__dirname +'/**/**/*.entity{.ts,.js}'],
-        synchronize: true,
+        synchronize: false,
         logging: false,
         migrations: [__dirname + '/database/migrations/*.ts'],
         migrationsRun: true, //
@@ -30,8 +30,7 @@ import { FixedExpenseModule } from './fixedExpense/fixedExpense.module';
 
     }),
     ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath:`.env.${process.env.NODE_ENV}` // Asegúrate de que las variables estén disponibles globalmente
+      //envFilePath:`.env.${process.env.NODE_ENV}` // Asegúrate de que las variables estén disponibles globalmente
     }),
     ConfigGeneralModule,
 
@@ -42,6 +41,6 @@ import { FixedExpenseModule } from './fixedExpense/fixedExpense.module';
 })
 export class AppModule {
   constructor() {
-    console.log(__dirname)
+    console.log(process.env)
   }
 }

@@ -18,7 +18,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "start": "npm run build && npm run start:prod",
+    "start": "npm run build  &&  npm run migration:generate --name=nueva-tabla && npm run start:prod",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:generate": "cross-env NODE_ENV=development npm run typeorm migration:generate ./src/database/migrations/%npm_config_name% -- -d typeorm.config.ts",
     "migration:run-dev": "cross-env NODE_ENV=development npm run typeorm migration:run -- -d typeorm.config.ts",
