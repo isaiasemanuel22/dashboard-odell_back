@@ -2,12 +2,12 @@
 import { DataSource } from 'typeorm';
 
 export const AppDataSource = new DataSource({
-    type: process.env.DB_TYPE as any,
+    type: 'mysql',
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT as string, 10),
-    username: process.env.DB_USERNAME,
-    password: 'root',
-    database: process.env.DB_NAME,
+    username: 'root',
+    password: '',
+    database: 'odell',
     entities: [__dirname +'/**/**/*.entity{.ts,.js}'],
     synchronize: true,
     logging: true, // Habilita los logs
