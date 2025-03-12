@@ -21,16 +21,16 @@ import { FixedExpenseModule } from './fixedExpense/fixedExpense.module';
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
         url:process.env.JAWSDB_URL,
-        entities: [__dirname +'/**/**/*.entity{.ts,.js}'],
+        entities: [__dirname +'/**/models/*.entity{.ts,.js}'],
         synchronize: false,
-        logging: false,
+        logging: true,
         migrations: [__dirname + '/database/migrations/*.ts'],
         migrationsRun: true, //
       }),
 
     }),
     ConfigModule.forRoot({
-      //envFilePath:`.env.${process.env.NODE_ENV}` // Asegúrate de que las variables estén disponibles globalmente
+      envFilePath:`.env.${process.env.NODE_ENV}` // Asegúrate de que las variables estén disponibles globalmente
     }),
     ConfigGeneralModule,
 

@@ -8,8 +8,9 @@ export const AppDataSource = new DataSource({
     username: 'root',
     password: '',
     database: 'odell',
-    entities: [__dirname +'/**/**/*.entity{.ts,.js}'],
-    synchronize: true,
-    logging: true, // Habilita los logs
+    entities: [__dirname +'/**/models/*.entity{.ts,.js}'],
+    synchronize: false,
+    logging: true,
     migrations: [__dirname + '/database/migrations/*.ts'],
+    migrationsRun: true, //
 });

@@ -22,6 +22,10 @@ export class TypeMaterialService {
     return this.typeMaterialRepository.findOne({ where: { id }, relations: ['bills', 'colors', 'brandFilament', 'filament'] });
   }
 
+  findOneOnly(id: string): Promise<TypeMaterial> {
+    return this.typeMaterialRepository.findOne({ where: { id }});
+  }
+
   create(typeMaterial: Partial<TypeMaterial>): Promise<TypeMaterial> {
     const newMaterial = this.typeMaterialRepository.create(typeMaterial);
     return this.typeMaterialRepository.save(newMaterial);

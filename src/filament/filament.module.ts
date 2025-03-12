@@ -13,11 +13,13 @@ import { ColorController } from './controller/color/color.controller';
 import { StockFilament } from '../commons/models/StockFilament.entity';
 import { FilamentService } from './service/filament/filament.service';
 import { FilamentController } from './controller/filament/filament.controller';
+import { FilamentStockService } from './service/stock-filament/stock-filament.service';
+import { FilamentStockController } from './controller/stock-filament/stock-filament.controller';
 
 @Module({
   imports:[TypeOrmModule.forFeature([BrandFilament,TypeMaterial,Color, Filament , StockFilament])],
-  controllers: [FilamentController, BrandFilamentController, TypeMaterialController, ColorController],
-  providers: [FilamentService, TypeMaterialService, BrandFilamentService , ColorService],
-  exports:[FilamentService, TypeMaterialService, BrandFilamentService , ColorService]
+  controllers: [FilamentController, BrandFilamentController, TypeMaterialController, ColorController,FilamentStockController],
+  providers: [FilamentService, TypeMaterialService, BrandFilamentService , ColorService, FilamentStockService],
+  exports:[FilamentService, TypeMaterialService, BrandFilamentService , ColorService,FilamentStockService]
 })
 export class FilamentModule {}

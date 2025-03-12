@@ -15,7 +15,9 @@ export class BrandFilamentService {
   }
 
   findOne(id: string): Promise<BrandFilament> {
-    return this.brandFilamentRepository.findOne({ where: { id } });
+    return this.brandFilamentRepository.findOne({ where: { id } }).then((response)=> {
+      return response;
+    });
   }
 
   create(brandFilament: Partial<BrandFilament>): Promise<BrandFilament> {

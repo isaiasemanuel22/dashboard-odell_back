@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { Filament } from '../../../commons/models/Filament.entity';
 import { FilamentService } from '../../../filament/service/filament/filament.service';
+import { CreateFilamentDto } from 'src/commons/models/interfaces/createFilamentDTO';
 
 @Controller('filament')
 export class FilamentController {
@@ -20,7 +21,7 @@ export class FilamentController {
 
   // Crear un nuevo filamento
   @Post()
-  async create(@Body() createFilamentDto: Filament): Promise<Filament> {
+  async create(@Body() createFilamentDto: CreateFilamentDto): Promise<Filament> {
     return this.filamentService.create(createFilamentDto);
   }
 
