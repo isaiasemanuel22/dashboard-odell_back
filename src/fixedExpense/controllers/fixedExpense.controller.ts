@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 import { FixedExpenseService } from '../services/fixedExpense.service';
-import { FixedExpense } from '../models/fixedExpense.entity';
+import { FixedExpense } from '../../commons/models/fixedExpense.entity';
 
 
 @Controller('fixed-expenses')

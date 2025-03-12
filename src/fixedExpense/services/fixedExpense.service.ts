@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { FixedExpense } from '../models/fixedExpense.entity';
+import { FixedExpense } from '../../commons/models/fixedExpense.entity';
 
 @Injectable()
 export class FixedExpenseService {

@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FixedExpenseModule } from './fixedExpense/fixedExpense.module';
+import { entities } from './commons/models';
 @Module({
   controllers:[AppController],
   imports: [
@@ -21,7 +22,7 @@ import { FixedExpenseModule } from './fixedExpense/fixedExpense.module';
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
         url:process.env.JAWSDB_URL,
-        entities: [__dirname +'/**/models/*.entity{.ts,.js}'],
+        entities: entities,
         synchronize: false,
         logging: true,
         migrations: [__dirname + '/database/migrations/*.ts'],
