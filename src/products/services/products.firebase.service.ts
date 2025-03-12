@@ -1,6 +1,5 @@
 import {Injectable } from '@nestjs/common'
 import { FirebaseRepository } from 'src/firebase/services/firebase-repository.service';
-import { ProductDto } from '../../commons/models/ProductDto.entity';
 import { Product } from '../../commons/models/Product.entity';
 
 @Injectable()
@@ -25,11 +24,11 @@ export class ProductsService {
    return products;
   }
 
-  async addProductFirebase(product:ProductDto){
+  async addProductFirebase(product:Product){
     return await this.dbFiresbase.firesbaseApp().collection('products').add(product);
   }
 
-  async addSupplementFirebase(product:ProductDto){
+  async addSupplementFirebase(product:Product){
     return await this.dbFiresbase.firesbaseApp().collection('supplements').add(product);
   }
 

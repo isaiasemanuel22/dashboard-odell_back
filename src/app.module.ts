@@ -8,6 +8,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FixedExpenseModule } from './fixedExpense/fixedExpense.module';
 import { entities } from './commons/models';
+import { Product } from './commons/models/Product.entity';
+import { ProductInfo } from './commons/models/ProductsInfo.entity';
+import { Bill } from './commons/models/Bill.entity';
+import { TypeMaterial } from './commons/models/TypeMaterial.entity';
+import { BrandFilament } from './commons/models/BrandFilament.entity';
+import { Color } from './commons/models/Color.entity';
+import { Filament } from './commons/models/Filament.entity';
+import { StockFilament } from './commons/models/StockFilament.entity';
+import { FixedExpense } from './commons/models/fixedExpense.entity';
 @Module({
   controllers:[AppController],
   imports: [
@@ -22,8 +31,16 @@ import { entities } from './commons/models';
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
         url:process.env.JAWSDB_URL,
-        entities: entities,
-        synchronize: false,
+        entities: [Bill,
+        BrandFilament,
+        Color,
+        Filament,
+        Product,
+        ProductInfo,
+        StockFilament,
+        TypeMaterial,
+        FixedExpense],
+        synchronize: true,
         logging: true,
         migrations: [__dirname + '/database/migrations/*.ts'],
         migrationsRun: true, //

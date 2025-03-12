@@ -1,6 +1,6 @@
 
 import { DataSource } from 'typeorm';
-
+import { entities } from './dist/commons/models';
 export const AppDataSource = new DataSource({
     type: 'mysql',
     host: process.env.DB_HOST,
@@ -8,7 +8,7 @@ export const AppDataSource = new DataSource({
     username: 'root',
     password: '',
     database: 'odell',
-    entities: [__dirname +'/**/models/*.entity{.ts,.js}'],
+    entities: entities,
     synchronize: false,
     logging: true,
     migrations: [__dirname + '/database/migrations/*.ts'],
