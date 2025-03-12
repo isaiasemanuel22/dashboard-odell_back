@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { StockFilament } from 'src/commons/models/StockFilament.entity';
-import { FilamentStockService } from 'src/filament/service/stock-filament/stock-filament.service';
+import { StockFilament } from '../../../commons/models/StockFilament.entity';
+import { FilamentStockService } from '../../../filament/service/stock-filament/stock-filament.service';
 
 
 @Controller('filament-stock')

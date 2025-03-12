@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Color } from 'src/commons/models/Color.entity';
-import { Filament } from 'src/commons/models/Filament.entity';
-import { StockFilament } from 'src/commons/models/StockFilament.entity';
+import { Color } from '../../../commons/models/Color.entity';
+import { Filament } from '../../../commons/models/Filament.entity';
+import { StockFilament } from '../../../commons/models/StockFilament.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
