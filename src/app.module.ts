@@ -40,7 +40,7 @@ import { FixedExpense } from './commons/models/fixedExpense.entity';
         StockFilament,
         TypeMaterial,
         FixedExpense],
-        synchronize: true,
+        synchronize: false,
         logging: true,
         migrations: [__dirname + '/database/migrations/*.ts'],
         migrationsRun: true, //

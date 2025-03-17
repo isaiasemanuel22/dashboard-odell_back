@@ -10,7 +10,8 @@ export class FilamentController {
   // Obtener todos los filamentos
   @Get()
   async findAll(): Promise<Filament[]> {
-    return this.filamentService.findAll();
+    let filaments = await this.filamentService.findAll();
+    return filaments
   }
 
   // Obtener un filamento por su ID
@@ -29,8 +30,10 @@ export class FilamentController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateFilamentDto: Filament,
+    @Body() updateFilamentDto: CreateFilamentDto,
   ): Promise<Filament> {
+
+    console.log(id);
     return this.filamentService.update(id, updateFilamentDto);
   }
 

@@ -11,7 +11,7 @@ export class TypeMaterialService {
   ) {}
 
   findAll(): Promise<TypeMaterial[]> {
-    return this.typeMaterialRepository.find({ relations: ['bills', 'colors', 'brandFilament', 'filament'] });
+    return this.typeMaterialRepository.find();
   }
 
   findAllNames():Promise<TypeMaterial[]>{
@@ -19,7 +19,7 @@ export class TypeMaterialService {
   }
 
   findOne(id: string): Promise<TypeMaterial> {
-    return this.typeMaterialRepository.findOne({ where: { id }, relations: ['bills', 'colors', 'brandFilament', 'filament'] });
+    return this.typeMaterialRepository.findOne({ where: { id }});
   }
 
   findOneOnly(id: string): Promise<TypeMaterial> {
@@ -38,5 +38,22 @@ export class TypeMaterialService {
 
   async remove(id: string): Promise<void> {
     await this.typeMaterialRepository.delete(id);
+  }
+
+  async calcAveragePriceTypeMaterial(id:string){
+    const material =  await this.typeMaterialRepository.findOne({where:{id} , relations:['filament']});
+
+    let total = 0;
+    material.filament.forEach((filament)=> {
+      total += filament.price;
+    });
+
+    total = total/material.filament.length;
+    
+    await this.update(material.id , {
+      id: material.id,
+      name: material.name,
+      price: total,
+    })
   }
 }

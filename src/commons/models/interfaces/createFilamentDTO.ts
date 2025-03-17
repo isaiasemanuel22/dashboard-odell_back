@@ -5,6 +5,7 @@ export interface CreateFilamentDto {
         kgMaterial: number;
         brandFilament: string;
         typeMaterial: string;
-        cant:number;
+        stock:number;
         color:string;
+        id:string
 }

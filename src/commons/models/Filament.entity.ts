@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
 import { BrandFilament } from "./BrandFilament.entity";
 import { TypeMaterial } from "./TypeMaterial.entity";
+import { Color } from "./Color.entity";
 
 @Entity()
 export class Filament {
@@ -12,11 +13,20 @@ export class Filament {
 
   @Column()
   kgMaterial: number;
+
+  @Column({default:0})
+  stock:number
   
   @ManyToOne(() => BrandFilament, { nullable: false })
+  @JoinColumn({ name: 'brandFilamentId' })  
   brandFilament: BrandFilament;
 
   @ManyToOne(()=> TypeMaterial, {nullable:false})
+  @JoinColumn({ name: 'typeMaterialId' })  
   typeMaterial: TypeMaterial;
+
+  @ManyToOne(()=> Color, (color) => color.filament,{ nullable: true, onDelete: "SET NULL" })
+  @JoinColumn({ name: 'colorId' , })  
+  color: Color;
 
 }

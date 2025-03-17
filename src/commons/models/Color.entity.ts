@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Filament } from "./Filament.entity";
 
 @Entity()
 export class Color {
@@ -7,4 +8,7 @@ export class Color {
 
   @Column()
   name: string;
+
+  @OneToMany(()=> Filament, (filament) => filament.color)
+  filament: Filament[];
 }
