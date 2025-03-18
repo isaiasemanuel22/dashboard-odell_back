@@ -48,7 +48,10 @@ export class TypeMaterialService {
       total += filament.price;
     });
 
-    total = total/material.filament.length;
+    if(total > 0){
+      total = total/material.filament.length;
+    }
+
     
     await this.update(material.id , {
       id: material.id,
