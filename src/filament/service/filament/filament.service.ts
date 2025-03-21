@@ -78,6 +78,6 @@ export class FilamentService {
   async remove(id: string): Promise<void> {
     const filament = await this.filamentRepository.findOne({where:{id} , relations:['typeMaterial']})
     await this.filamentRepository.delete(id);
-    this.typeMaterialService.calcAveragePriceTypeMaterial(filament.typeMaterial.id);
+    return await this.typeMaterialService.calcAveragePriceTypeMaterial(filament.typeMaterial.id);
   }
 }

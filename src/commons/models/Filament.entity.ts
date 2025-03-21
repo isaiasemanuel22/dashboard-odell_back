@@ -17,11 +17,11 @@ export class Filament {
   @Column({default:0})
   stock:number
   
-  @ManyToOne(() => BrandFilament, { nullable: false })
+  @ManyToOne(() => BrandFilament,  {nullable:true , onDelete: 'SET NULL'})
   @JoinColumn({ name: 'brandFilamentId' })  
   brandFilament: BrandFilament;
 
-  @ManyToOne(()=> TypeMaterial, {nullable:false})
+  @ManyToOne(()=> TypeMaterial, {nullable:true , onDelete: 'SET NULL'})
   @JoinColumn({ name: 'typeMaterialId' })  
   typeMaterial: TypeMaterial;
 

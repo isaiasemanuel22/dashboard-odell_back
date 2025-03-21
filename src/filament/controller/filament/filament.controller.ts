@@ -5,7 +5,8 @@ import { CreateFilamentDto } from 'src/commons/models/interfaces/createFilamentD
 
 @Controller('filament')
 export class FilamentController {
-  constructor(private readonly filamentService: FilamentService) {}
+  constructor(
+    private readonly filamentService: FilamentService) {}
 
   // Obtener todos los filamentos
   @Get()

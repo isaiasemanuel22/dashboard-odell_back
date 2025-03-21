@@ -11,7 +11,12 @@ export class BrandFilamentService {
   ) {}
 
   findAll(): Promise<BrandFilament[]> {
-    return this.brandFilamentRepository.find();
+    return this.brandFilamentRepository.find({
+      order:{
+      name:'ASC'
+    }
+  }
+  );
   }
 
   findOne(id: string): Promise<BrandFilament> {
