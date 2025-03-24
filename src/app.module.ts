@@ -17,11 +17,13 @@ import { Color } from './commons/models/Color.entity';
 import { Filament } from './commons/models/Filament.entity';
 import { StockFilament } from './commons/models/StockFilament.entity';
 import { FixedExpense } from './commons/models/fixedExpense.entity';
+import { Config } from './commons/models/config.entity';
 @Module({
   controllers:[AppController],
   imports: [
     ProductsModule,
     FixedExpenseModule,
+    ConfigGeneralModule,
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: (process.env.DB_TYPE ?? 'mysql') as 'mysql',
@@ -39,7 +41,8 @@ import { FixedExpense } from './commons/models/fixedExpense.entity';
         ProductInfo,
         StockFilament,
         TypeMaterial,
-        FixedExpense],
+        FixedExpense,
+        Config],
         synchronize: false,
         logging: true,
         migrations: [__dirname + '/database/migrations/*.ts'],
@@ -50,8 +53,6 @@ import { FixedExpense } from './commons/models/fixedExpense.entity';
     ConfigModule.forRoot({
       envFilePath:`.env.${process.env.NODE_ENV}` // Asegúrate de que las variables estén disponibles globalmente
     }),
-    ConfigGeneralModule,
-
   ],
   providers:[
     AppService

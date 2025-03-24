@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { Config } from '../models/config.entity';
+import { Config } from '../../commons/models/config.entity';
 import { ConfigService } from '../service/config.service';
 
 @Controller('config')
@@ -8,6 +8,7 @@ export class ConfigController {
 
   @Get()
   async findAll(): Promise<Config[]> {
+    console.log('-----------------llego---------------------------------');
     return this.configService.findAll();
   }
 

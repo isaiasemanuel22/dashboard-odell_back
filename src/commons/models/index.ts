@@ -1,3 +1,4 @@
+import { Config } from "./config.entity";
 import { Bill } from "./Bill.entity";
 import { BrandFilament } from "./BrandFilament.entity";
 import { Color } from "./Color.entity";
@@ -20,5 +21,6 @@ Product,
 ProductInfo,
 StockFilament,
 TypeMaterial,
-FixedExpense
+FixedExpense,
+Config
 ]

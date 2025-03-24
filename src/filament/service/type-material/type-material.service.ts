@@ -43,8 +43,10 @@ export class TypeMaterialService {
   async calcAveragePriceTypeMaterial(id:string){
     const material =  await this.typeMaterialRepository.findOne({where:{id} , relations:['filament']});
 
+
     let total = 0;
     material.filament.forEach((filament)=> {
+      console.log(filament.typeMaterial);
       total += filament.price;
     });
 
