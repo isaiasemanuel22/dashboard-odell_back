@@ -7,7 +7,6 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FixedExpenseModule } from './fixedExpense/fixedExpense.module';
-import { entities } from './commons/models';
 import { Product } from './commons/models/Product.entity';
 import { ProductInfo } from './commons/models/ProductsInfo.entity';
 import { Bill } from './commons/models/Bill.entity';

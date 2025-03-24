@@ -4,7 +4,7 @@ import { DataSource } from 'typeorm';
 export const AppDataSource = new DataSource({
     type: process.env.DB_TYPE as any,
     host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT as string, 10),
+    port: parseInt(process.env.DB_PORT, 10),
     username: process.env.DB_USERNAME,
     password: 'root',
     database: process.env.DB_NAME,
