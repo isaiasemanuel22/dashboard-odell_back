@@ -2,12 +2,13 @@
 import { DataSource } from 'typeorm';
 import { entities } from './commons/models';
 export const AppDataSource = new DataSource({
-    type: 'mysql',
+    type: (process.env.DB_TYPE ?? 'mysql') as 'mysql',
     host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT, 10),
-    username: 'root',
-    password: '',
-    database: 'odell',
+    port: (process.env.DB_TYPE ?? 3306) as number,
+    username:process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    url:process.env.JAWSDB_URL,
     entities: entities,
     synchronize: false,
     logging: true,
