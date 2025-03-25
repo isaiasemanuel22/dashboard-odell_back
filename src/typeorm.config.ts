@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
     database: process.env.DB_NAME,
     url:process.env.JAWSDB_URL,
     entities: entities,
-    synchronize: false,
+    synchronize: true,
     logging: true,
     migrations: ['./database/migrations/*.ts'],
     migrationsRun: true, //
